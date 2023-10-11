@@ -1,0 +1,25 @@
+public class MultiplicationTable {
+    public static void main(String[] args) {
+        displayMultiplicationTable(5);
+        displayMultiplicationTable(10);
+    }
+
+    public static void displayMultiplicationTable(int number) {
+        if (number <= 0) {
+            System.out.println("Invalid input. Please enter a positive integer.");
+            return;
+        }
+
+        Thread thread = new Thread(() -> {
+            for (int i = 1; i <= 10; i++) {
+                System.out.println(number + " x " + i + " = " + (number * i));
+                try { Thread.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
+            }
+        });
+
+        System.out.println("Multiplication Table for " + number + ":");
+        thread.start();
+        try { thread.join(); } catch (InterruptedException e) { e.printStackTrace(); }
+        System.out.println("Table for " + number + " completed.");
+    }
+}
