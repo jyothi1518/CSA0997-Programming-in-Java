@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class NumberToTextConverter {
+    private static final String[] units = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
+    private static final String[] teens = {"", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+    private static final String[] tens = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a numerical value: ");
+        int number = scanner.nextInt();
+        if (number == 0) {
+            System.out.println("Zero");
+        } else {
+            System.out.println("Equivalent text: " + convertNumberToText(number));
+        }
+    }
+    private static String convertNumberToText(int number) {
+        if (number < 0 || number > 999) {
+            return "Out of range";
+        }
+        if (number >= 100) {
+            return units[number / 100] + " Hundred " + convertNumberToText(number % 100);
+        } else if (number >= 20) {
+            return tens[number / 10] + " " + convertNumberToText(number % 10);
+        } else if (number >= 11) {
+            return teens[number - 10];
+        } else {
+            return units[number];
+        }
+    }
+}
