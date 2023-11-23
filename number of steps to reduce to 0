@@ -1,23 +1,19 @@
-import java.util.Scanner;
-public class ReduceToZero {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter an integer: ");
-        int num = scanner.nextInt();
-        int steps = numberOfSteps(num);
-        System.out.println("Number of steps to reduce " + num + " to zero: " + steps);
-        scanner.close();
-    }
-    public static int numberOfSteps(int num) {
-        int steps = 0;
-        while (num != 0) {
-            if (num % 2 == 0) {
-                num /= 2;
-            } else {
-                num -= 1;
+import java.util.*;
+class reducetozero{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter a number:");
+        int n=sc.nextInt();
+        int s=0;
+        while(n>0){
+            if(n%2==0){
+                n=n/2;
             }
-            steps++;
+            else{
+                n-=1;
+            }
+            s++;
         }
-        return steps;
+        System.out.println("Number of steps="+s);
     }
 }
