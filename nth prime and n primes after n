@@ -1,0 +1,45 @@
+import java.util.Scanner;
+public class NthPrimeNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the value of N: ");
+        int N = scanner.nextInt();
+        if (N <= 0) {
+            System.out.println("Invalid input. N should be a positive integer.");
+            return;
+        }
+        int count = 0;
+        int number = 2;
+        while (true) {
+            if (isPrime(number)) {
+                count++;
+                if (count == N) {
+                    System.out.println(N + "th Prime number is: " + number  );
+                    break;
+                }
+            }
+            number++;
+        }
+        System.out.print(N + " prime numbers after " + number + " are: ");
+        int primeCount = 0;
+        while (primeCount < N) {
+            if (isPrime(number)) {
+                System.out.print(number + ", ");
+                primeCount++;
+            }
+            number++;
+        }
+        scanner.close();
+    }
+    private static boolean isPrime(int num) {
+        if (num < 2) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
